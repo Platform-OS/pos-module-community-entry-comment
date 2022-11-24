@@ -1,0 +1,14 @@
+{%- comment -%}
+  Implements hook_community_entry_load.
+{%- endcomment -%}
+
+{% liquid
+  if params.entry.entry_type != 'comment'
+    return nil
+  endif
+
+  function comments = 'modules/community-entry-comment/lib/queries/comment/search', entry_id: params.entry.id
+  assign result = '{}' | parse_json | hash_merge: entry: comments.first
+
+  return result
+%}
