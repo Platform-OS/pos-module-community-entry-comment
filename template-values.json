@@ -1,6 +1,6 @@
 {
-  "name": "Module Name",
-  "machine_name": "module-name",
+  "name": "Comment Entry",
+  "machine_name": "community-entry-comment",
   "type": "module",
   "version": "0.0.0",
   "dependencies": {
