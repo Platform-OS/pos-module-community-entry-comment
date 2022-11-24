@@ -1,0 +1,14 @@
+{%- comment -%}
+  Implements hook_community_entry_create.
+{%- endcomment -%}
+
+{% liquid
+  if params.created_entry.entry_type != 'comment'
+    return nil
+  endif
+
+  function comment = 'modules/community-entry-comment/lib/commands/comment/create', entry_id: params.created_entry.id, content: params.entry_payload.content, parent_comment_id: params.entry_payload.parent_comment_id
+  assign result = '{}' | parse_json | hash_merge: comment: comment
+
+  return result
+%}
