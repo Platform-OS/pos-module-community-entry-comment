@@ -1,0 +1,14 @@
+{% comment %}
+  Loads a comments.
+
+  Params:
+    - id: string (optional)
+{% endcomment %}
+{% liquid
+  graphql comments = 'modules/community-entry-comment/comment/search', id: id, page: 1, per_page: 1
+  if comments.errors
+    return comments
+  endif
+
+  return comments.comments.results.first
+%}

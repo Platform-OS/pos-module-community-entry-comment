@@ -1,0 +1,22 @@
+{% comment %}
+  Collect comments.
+
+  Params:
+    - current_page: int (optional)
+      default: 1
+    - per_page: int (optional)
+      default: 20
+    - entry_id: string (optional)
+    - entry_ids: []string (optional)
+{% endcomment %}
+{% liquid
+  assign current_page = current_page | default: 1
+  assign per_page = per_page | default: 20
+
+  graphql comments = 'modules/community-entry-comment/comment/search', entry_id: entry_id, entry_ids: entry_ids, page: current_page, per_page: per_page
+  if comments.errors
+    return comments
+  endif
+
+  return comments.comments.results
+%}
