@@ -2,4 +2,3 @@ name: comment
 properties:
   - name: content
   - name: entry_id
-  - name: parent_comment_id

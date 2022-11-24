@@ -4,10 +4,9 @@
   Params:
     - entry_id: string
     - content: string
-    - parent_comment_id: string (optional)
 {%- endcomment -%}
 {% liquid
-  function object = 'modules/community-entry-comment/lib/commands/comment/create/build', entry_id: entry_id, content: content, parent_comment_id: parent_comment_id
+  function object = 'modules/community-entry-comment/lib/commands/comment/create/build', entry_id: entry_id, content: content
   function object = 'modules/community-entry-comment/lib/commands/comment/create/check', object: object
 
   if object.valid
