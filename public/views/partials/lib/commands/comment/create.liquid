@@ -1,0 +1,24 @@
+{%- comment -%}
+  Creates a comment entry.
+
+  Params:
+    - entry_id: string
+    - content: string
+    - parent_comment_id: string (optional)
+{%- endcomment -%}
+{% liquid
+  function object = 'modules/community-entry-comment/lib/commands/comment/create/build', entry_id: entry_id, content: content, parent_comment_id: parent_comment_id
+  function object = 'modules/community-entry-comment/lib/commands/comment/create/check', object: object
+
+  if object.valid
+    graphql comment = 'modules/community-entry-comment/comment/create', args: object
+    if comment.comment.id
+      hash_assign object['created_comment'] = comment.comment
+    else
+      hash_assign object['valid'] = false
+      hash_assign object['errors'] = comment.errors
+    endif
+  endif
+
+  return object
+%}

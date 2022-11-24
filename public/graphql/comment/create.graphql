@@ -1,0 +1,20 @@
+mutation ($entry_id: String!, $content: String!, $parent_comment_id: String) {
+  comment: record_create(
+    record: {
+      table: "modules/community-entry-comment/comment"
+      properties: [
+        { name: "entry_id", value: $entry_id }
+        { name: "content", value: $content }
+        { name: "parent_comment_id", value: $parent_comment_id }
+      ]
+    }
+  ) {
+    id
+    created_at
+    type: table
+
+    entry_id: property(name: "entry_id")
+    content: property(name: "content")
+    parent_comment_id: property(name: "parent_comment_id")
+  }
+}
