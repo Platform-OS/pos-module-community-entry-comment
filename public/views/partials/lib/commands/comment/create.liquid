@@ -10,12 +10,12 @@
   function object = 'modules/community-entry-comment/lib/commands/comment/create/check', object: object
 
   if object.valid
-    graphql comment = 'modules/community-entry-comment/comment/create', args: object
-    if comment.comment.id
-      hash_assign object['created_comment'] = comment.comment
+    graphql _comment = 'modules/community-entry-comment/comment/create', args: object
+    if _comment['comment'].id
+      hash_assign object['created_comment'] = _comment['comment']
     else
       hash_assign object['valid'] = false
-      hash_assign object['errors'] = comment.errors
+      hash_assign object['errors'] = _comment.errors
     endif
   endif
 
